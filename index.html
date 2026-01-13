@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasugano Sora - Informasi Karakter Rinci & Galeri</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            background-color: #1a2a3a; /* Biru tua */
+            color: #e0e0e0;
+            scroll-behavior: smooth;
+        }
+
+        /* Kelas .header dan gaya terkait telah dihapus */
+
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+            background: #2a3a4a; /* Warna kontainer tetap biru tua */
+            padding: 25px 35px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            color: #ffffff;
+            font-size: 1.6em;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            padding-bottom: 4px;
+            border-bottom: 2px solid #4a5a6a;
+        }
+        .character-info img {
+            display: block;
+            margin: 0 auto 25px auto;
+            max-width: 85%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease-in-out;
+        }
+        .character-info img:hover {
+            transform: scale(1.01);
+        }
+        .info-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: baseline;
+        }
+        .info-item strong {
+            flex-shrink: 0;
+            width: 160px;
+            color: #b0b0b0;
+            font-size: 1em;
+            padding-right: 10px;
+        }
+        .info-item span {
+            flex-grow: 1;
+            font-size: 1em;
+        }
+        p {
+            text-align: justify;
+            margin-bottom: 0.8em;
+            font-size: 0.98em;
+            color: #d0d0d0;
+        }
+        ul {
+            list-style: disc;
+            margin-left: 20px;
+            margin-bottom: 0.8em;
+        }
+        ul li {
+            margin-bottom: 6px;
+            font-size: 0.98em;
+            color: #d0d0d0;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
+            margin: 30px 0;
+        }
+        .note {
+            background-color: #3a4a5a;
+            border-left: 5px solid #ffcc00;
+            padding: 12px;
+            margin-top: 20px;
+            border-radius: 5px;
+            color: #f0f0f0;
+            font-style: italic;
+            font-size: 0.95em;
+        }
+
+        /* Gaya untuk Galeri Gambar */
+        .gallery-section h2 {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .gallery-item {
+            flex: 1 1 calc(33.333% - 40px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #3a4a5a;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            min-width: 280px;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        .image-caption {
+            padding: 15px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #d0d0d0;
+            background-color: #2a3a4a;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            background-color: #1a1a1a;
+            color: #aaa;
+            font-size: 0.85em;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+        }
+        .footer a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Media Queries untuk Responsif */
+        @media (max-width: 768px) {
+            .gallery-item {
+                flex: 1 1 calc(50% - 30px);
+            }
+        }
+        @media (max-width: 480px) {
+            .gallery-item {
+                flex: 1 1 100%;
+            }
+            .container {
+                padding: 15px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 style="text-align: center;">Kasugano Sora (春日野 穹)</h2>
+        <div class="character-info">
+            <img id="sora-image" src="https://cs11.pikabu.ru/post_img/big/2018/07/25/1/1532470420118136013.jpg" alt="Visual Novel Kasugano Sora">
+            <p id="image-caption" style="text-align: center; font-style: italic; color: #b0b0b0; margin-top: -15px; font-size: 0.9em;">-</p>
+
+            <h2>Detail Pribadi</h2>
+            <div class="info-item">
+                <strong>Nama Lengkap:</strong> <span id="nama-lengkap"></span>
+            </div>
+            <div class="info-item">
+                <strong>Kanji:</strong> <span id="kanji"></span>
+            </div>
+            <div class="info-item">
+                <strong>Ulang Tahun:</strong> <span id="ulang-tahun"></span>
+            </div>
+            <div class="info-item">
+                <strong>Zodiak:</strong> <span id="zodiak"></span>
+            </div>
+            <div class="info-item">
+                <strong>Golongan Darah:</strong> <span id="golongan-darah"></span>
+            </div>
+            <div class="info-item">
+                <strong>Tinggi Badan:</strong> <span id="tinggi-badan"></span>
+            </div>
+            <div class="info-item">
+                <strong>Warna Rambut:</strong> <span id="warna-rambut"></span>
+            </div>
+            <div class="info-item">
+                <strong>Warna Mata:</strong> <span id="warna-mata"></span>
+            </div>
+            <div class="info-item">
+                <strong>Pengisi Suara (Seiyuu):</strong> <span id="seiyuu"></span>
+            </div>
+
+            <h2>Latar Belakang & Sejarah</h2>
+            <p id="latar-belakang"></p>
+            <p id="detail-latar-belakang"></p>
+
+            <h2>Kepribadian & Sifat</h2>
+            <p id="kepribadian"></p>
+            <ul>
+                <li><strong id="sifat-pendiam-introvert"></strong></li>
+                <li><strong id="sifat-ketergantungan"></strong></li>
+                <li><strong id="sifat-posesif"></strong></li>
+                <li><strong id="sifat-malas"></strong></li>
+                <li><strong id="sifat-emosional-rapuh"></strong></li>
+            </ul>
+
+            <h2>Kebiasaan & Kegemaran</h2>
+            <ul>
+                <li><strong id="kebiasaan-makanan"></strong></li>
+                <li><strong id="kebiasaan-hobi"></strong></li>
+                <li><strong id="kebiasaan-boneka"></strong></li>
+                <li><strong id="kebiasaan-tidur"></strong></li>
+            </ul>
+
+            <h2>Hubungan Kunci</h2>
+            <ul>
+                <li><strong id="hubungan-haruka"></strong></li>
+                <li><strong id="hubungan-lain"></strong></li>
+            </ul>
+
+            <hr>
+            <h2>Cerita Visual Novel: Yosuga no Sora</h2>
+            <p id="cerita-vn-pengantar"></p>
+            <p id="cerita-vn-alur"></p>
+            <p id="cerita-vn-tema"></p>
+            <p id="cerita-vn-pilihan"></p>
+
+            <hr>
+            <h2>Peran Kasugano Sora dalam Visual Novel</h2>
+            <p id="peran-vn-intro"></p>
+            <p id="peran-vn-arc"></p>
+            <p id="peran-vn-tema-sora"></p>
+
+            <div class="note">
+                Kasugano Sora > All Fiksi
+                [My Opini]
+            </div>
+        </div>
+
+        <hr id="galeri-sora">
+        <div class="gallery-section">
+            <h2>Kasugano Sora</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://rare-gallery.com/uploads/posts/231480-sora-kasugano-3440x2800.jpg" alt="Kasugano Sora Gambar 1">
+                    <div class="image-caption"></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://w.wallhaven.cc/full/nm/wallhaven-nmoox9.jpg" alt="Kasugano Sora Gambar 2">
+                    <div class="image-caption"></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://w.wallhaven.cc/full/4l/wallhaven-4lggll.jpg" alt="Kasugano Sora Gambar 3">
+                    <div class="image-caption"></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://w.wallhaven.cc/full/j8/wallhaven-j83gp5.png" alt="Kasugano Sora Gambar 4">
+                    <div class="image-caption"></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://w.wallhaven.cc/full/nm/wallhaven-nmdr8k.jpg" alt="Kasugano Sora Gambar 5">
+                    <div class="image-caption"></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://w.wallhaven.cc/full/4v/wallhaven-4vq65n.jpg" alt="Kasugano Sora Gambar 6">
+                    <div class="image-caption"></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://th.bing.com/th/id/OIP.cW5LZF1NInSmdxbwSyF2lAHaE1?w=780&h=509&rs=1&pid=ImgDetMain&cb=idpwebp1&o=7&rm=3" alt="Kasugano Sora Gambar 7">
+                    <div class="image-caption"></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://wallpaperaccess.com/full/2363070.jpg" alt="Kasugano Sora Gambar 8">
+                    <div class="image-caption"></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://cdn.wallpapersafari.com/6/3/jzV5lm.jpg" alt="Kasugano Sora Gambar 9">
+                    <div class="image-caption"></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://w.wallhaven.cc/full/vq/wallhaven-vqgr9p.jpg" alt="Kasugano Sora Gambar 10">
+                    <div class="image-caption"></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://w.wallhaven.cc/full/zx/wallhaven-zx5q2g.png" alt="Kasugano Sora Gambar 11">
+                    <div class="image-caption"></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://w.wallhaven.cc/full/p2/wallhaven-p2ywme.jpg" alt="Kasugano Sora Gambar 12">
+                    <div class="image-caption"></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://w.wallhaven.cc/full/42/wallhaven-4231zy.jpg" alt="Kasugano Sora Gambar 13">
+                    <div class="image-caption"></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://w.wallhaven.cc/full/4g/wallhaven-4g3e7q.png" alt="Kasugano Sora Gambar 14">
+                    <div class="image-caption"></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://w.wallhaven.cc/full/49/wallhaven-496zld.jpg" alt="Kasugano Sora Gambar 15">
+                    <div class="image-caption"></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://w.wallhaven.cc/full/49/wallhaven-496zld.jpg" alt="Kasugano Sora Gambar 16">
+                    <div class="image-caption"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 16 Juni Sora. All rights Reserved.</p>
+    </div>
+
+    <script>
+        // Data karakter Kasugano Sora (lebih rinci)
+        const soraData = {
+            namaLengkap: "Kasugano Sora",
+            kanji: "春日野 穹",
+            ulangTahun: "5 Februari",
+            zodiak: "Aquarius",
+            golonganDarah: "A",
+            tinggiBadan: "152 cm",
+            warnaRambut: "#e8e4db",
+            warnaMata: "#4e4c40",
+            seiyuu: "Hiroko Taguchi",
+
+            latarBelakang: "Sora adalah adik kembar dari Kasugano Haruka, meskipun seringkali terlihat lebih muda dan lebih rapuh. Sejak lahir, ia menderita kondisi kesehatan yang sangat lemah, menghabiskannya sering menghabiskan waktu di rumah sakit dan membatasi interaksi sosialnya.",
+            detailLatarBelakang: "Kesehatan yang buruk ini membuatnya sering terisolasi dari dunia luar dan bergantung penuh pada Haruka. Setelah kematian tragis kedua orang tua mereka dalam kecelakaan, Sora dan Haruka pindah ke desa terpencil Okukozome, Klinik tempat ayah nya bekerja dulu. Lingkungan baru ini, meskipun damai, juga menjadi panggung bagi pengembangan hubungan mereka yang rumit dan tabu.",
+
+            kepribadian: "Sora adalah karakter yang kompleks dengan kepribadian yang cenderung kontradiktif.",
+            sifatPendiamIntrovert: "Pendiam & Introvert: Dia jarang berbicara, seringkali lebih memilih berkomunikasi melalui ekspresi wajah atau gerak-gerik. Dia juga canggung dalam bersosialisasi dan tidak memiliki banyak teman di luar Haruka.",
+            sifatKetergantungan: "Sangat Bergantung: Ketergantungannya pada Haruka sangat ekstrem, terutama karena kondisi kesehatannya. Dia melihat Haruka sebagai satu-satunya penopang dan dunianya.",
+            sifatPosesif: "Posesif: Dia menunjukkan kecemburuan yang kuat dan sifat posesif terhadap Haruka, tidak suka jika Haruka berinteraksi terlalu dekat dengan gadis lain.",
+            sifatMalas: "Malas & Suka Mengeluh: Meskipun cerdas, Sora cenderung malas dalam melakukan pekerjaan rumah tangga dan sering mengeluh. Dia lebih suka menghabiskan waktu dengan membaca manga atau tidur siang.",
+            sifatEmosionalRapuh: "Emosional & Rapuh: Di balik fasad dinginnya, Sora sangat emosional dan rapuh. Dia mudah terluka dan sensitif terhadap penolakan atau perasaan ditinggalkan.",
+
+            kebiasaanMakanan: "Makanan Instan & Manis: Dia memiliki preferensi yang kuat untuk makanan instan, terutama mie instan, dan sangat menyukai makanan manis.",
+            kebiasaanHobi: "Menonton Langit & Manga: Hobi favoritnya adalah melihat langit dari jendela atau beranda, dan membaca manga.",
+            kebiasaanBoneka: "Boneka Kelinci: Dia selalu terlihat memegang boneka kelinci berwarna hitam (disebut 'Usagi-san') yang menjadi teman setianya dan simbol ketergantungan.nya",
+            kebiasaanTidur: "Tidur Siang: Sering ditemukan tidur siang di tempat-tempat yang tidak biasa.",
+
+            hubunganHaruka: "Kasugano Haruka (Kakak Kembar): Hubungan inti dari keseluruhan cerita. Mereka memiliki ikatan yang sangat dalam, yang berkembang menjadi romansa inses setelah kematian orang tua mereka. Ini adalah hubungan yang mendominasi karakternya dan mendorong sebagian besar konflik dan perkembangan plot.",
+            hubunganLain: "Kazuha Migiwa & Akira Amatsume: Meskipun ada interaksi, Sora cenderung menjaga jarak dan menunjukkan kecemburuan terhadap mereka yang mendekati Haruka.",
+
+            peranVnIntro: "Kasugano Sora adalah salah satu heroine utama dan mungkin yang paling ikonik dalam visual novel 'Yosuga no Sora'. Rutenya (jalur cerita spesifiknya) adalah rute 'canon' yang paling dikenal dan sering dianggap sebagai inti cerita oleh para penggemar.",
+            peranVnArc: "Dalam rutenya, cerita berpusat pada perkembangan hubungan antara Sora dan Haruka, yang melewati batas-batas moral dan sosial. Visual novel ini secara eksplisit menggambarkan romansa inses di antara mereka, mengeksplorasi sisi emosional, psikologis, dan tantangan yang mereka hadapi dari masyarakat.",
+            peranVnTemaSora: "Sora mewakili tema sentral dari kebebasan, keterikatan, dan tabu dalam seri ini. Penampilannya yang khas (rambut putih panjang, gaun putih, pita hitam, dan boneka kelinci) telah menjadi citra yang melekat pada franchise ini.",
+
+            // Cerita Visual Novel Yosuga no Sora
+            ceritaVnPengantar: "Yosuga no Sora (ヨスガノソラ) adalah visual novel dewasa Jepang yang dikembangkan oleh Sphere, dirilis pada tahun 2008. Kisahnya berpusat pada Kasugano Haruka dan adik kembarnya, Sora, yang pindah ke sebuah desa terpencil setelah kehilangan kedua orang tua mereka dalam kecelakaan. Mereka pindah ke rumah lama kakek-nenek mereka, sebuah tempat penuh kenangan masa kecil.",
+            ceritaVnAlur: "Alur cerita Yosuga no Sora sangat non-linier, khas visual novel, di mana pemain membuat pilihan yang mengarah ke rute cerita yang berbeda, masing-masing berfokus pada salah satu heroine utama (Sora, Akira, Kazuha, Nao). Setiap rute mengeksplorasi hubungan Haruka dengan karakter yang dipilih, seringkali menghadapi tantangan moral, sosial, dan emosional.",
+            ceritaVnTema: "Tema utama yang dieksplorasi dalam visual novel ini adalah cinta yang terlarang, isolasi, ketergantungan emosional, dan kebebasan untuk memilih jalan hidup sendiri terlepas dari norma masyarakat.",
+            ceritaVnPilihan: "Meskipun ada beberapa rute, rute Sora seringkali dianggap sebagai 'rute sejati' atau yang paling menonjol karena eksplorasinya yang mendalam terhadap hubungan inses antara saudara kembar, dan konsekuensi psikologis serta sosialnya."
+        };
+
+        // Mengisi data karakter ke HTML
+        document.getElementById('nama-lengkap').textContent = soraData.namaLengkap;
+        document.getElementById('kanji').textContent = soraData.kanji;
+        document.getElementById('ulang-tahun').textContent = soraData.ulangTahun;
+        document.getElementById('zodiak').textContent = soraData.zodiak;
+        document.getElementById('golongan-darah').textContent = soraData.golonganDarah;
+        document.getElementById('tinggi-badan').textContent = soraData.tinggiBadan;
+        document.getElementById('warna-rambut').textContent = soraData.warnaRambut;
+        document.getElementById('warna-mata').textContent = soraData.warnaMata;
+        document.getElementById('seiyuu').textContent = soraData.seiyuu;
+
+        document.getElementById('latar-belakang').textContent = soraData.latarBelakang;
+        document.getElementById('detail-latar-belakang').textContent = soraData.detailLatarBelakang;
+
+        document.getElementById('kepribadian').textContent = soraData.kepribadian;
+        document.getElementById('sifat-pendiam-introvert').textContent = soraData.sifatPendiamIntrovert;
+        document.getElementById('sifat-ketergantungan').textContent = soraData.sifatKetergantungan;
+        document.getElementById('sifat-posesif').textContent = soraData.sifatPosesif;
+        document.getElementById('sifat-malas').textContent = soraData.sifatMalas;
+        document.getElementById('sifat-emosional-rapuh').textContent = soraData.sifatEmosionalRapuh;
+
+        document.getElementById('kebiasaan-makanan').textContent = soraData.kebiasaanMakanan;
+        document.getElementById('kebiasaan-hobi').textContent = soraData.kebiasaanHobi;
+        document.getElementById('kebiasaan-boneka').textContent = soraData.kebiasaanBoneka;
+        document.getElementById('kebiasaan-tidur').textContent = soraData.kebiasaanTidur;
+
+        document.getElementById('hubungan-haruka').textContent = soraData.hubunganHaruka;
+        document.getElementById('hubungan-lain').textContent = soraData.hubunganLain;
+
+        document.getElementById('peran-vn-intro').textContent = soraData.peranVnIntro;
+        document.getElementById('peran-vn-arc').textContent = soraData.peranVnArc;
+        document.getElementById('peran-vn-tema-sora').textContent = soraData.peranVnTemaSora;
+
+        // Cerita Yosuga no Sora
+        document.getElementById('cerita-vn-pengantar').textContent = soraData.ceritaVnPengantar;
+        document.getElementById('cerita-vn-alur').textContent = soraData.ceritaVnAlur;
+        document.getElementById('cerita-vn-tema').textContent = soraData.ceritaVnTema;
+        document.getElementById('cerita-vn-pilihan').textContent = soraData.ceritaVnPilihan;
+
+        // Gambar utama di bagian informasi karakter
+        document.getElementById('sora-image').src = 'https://cs11.pikabu.ru/post_img/big/2018/07/25/1/1532470420118136013.jpg';
+        document.getElementById('image-caption').textContent = 'Visual Kasugano Sora dari Visual Novel Yosuga no Sora.';
+
+        // --- PENTING: Ganti URL placeholder di bawah ini dengan URL gambar Sora Anda yang sebenarnya! ---
+    </script>
+</body>
+</html>
